@@ -6,8 +6,12 @@ type IChildren = {
 }
 
 const LetrasProvider = ({children}:IChildren) => {
+    const [alerta, setAlerta] = useState('');
     return (
-        <LetrasContext.Provider value={{}}>
+        <LetrasContext.Provider value={{
+            alerta,
+            setAlerta
+        }}>
             {children}
         </LetrasContext.Provider>
     )
