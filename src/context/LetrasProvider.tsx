@@ -10,15 +10,19 @@ type IChildren = {
 const LetrasProvider = ({children}:IChildren) => {
     const [alerta, setAlerta] = useState('');
     const [letra, setLetra] = useState('');
+    const [isCargando, setIsCargando] = useState(false);
 
     const busquedaLetra = async(busqueda:IBusqueda) => {
+        setIsCargando(true);
         try {
             const {artista,cancion} = busqueda;
             const url = `https://api.lyrics.ovh/v1/${artista}/${cancion}`;
             const {data} = await axios(url);
-            setAlerta(data.lyrics);
+            setLetra(data.lyrics);
+            setIsCargando(false);
+            setAlerta('');
         } catch (error) {
-            console.error(error);
+            setAlerta('Canción No Encontrada')
         }
     }
     return (
@@ -26,7 +30,8 @@ const LetrasProvider = ({children}:IChildren) => {
             alerta,
             setAlerta,
             busquedaLetra,
-
+            letra,
+            isCargando
         }}>
             {children}
         </LetrasContext.Provider>

@@ -20,7 +20,6 @@ const Formulario = (): JSX.Element => {
         return setAlerta('Coloca el nombre del artista y la canción')
     }
     busquedaLetra(busqueda);
-    setAlerta('');
   }
   return (
     <form onSubmit={handleSubmit}>
