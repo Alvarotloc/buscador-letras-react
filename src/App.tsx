@@ -1,9 +1,10 @@
 import AppLetras from './components/AppLetras';
+import { LetrasProvider } from './context/LetrasProvider';
 const App = ():JSX.Element => {
   return (
-    <>
-    <AppLetras />
-    </>
+    <LetrasProvider>
+      <AppLetras />
+    </LetrasProvider>
   )
 }
 
