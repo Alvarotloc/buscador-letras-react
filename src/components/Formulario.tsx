@@ -1,9 +1,14 @@
 import { FormEvent, useState } from "react";
 import useLetras from '../hooks/useLetras';
 
+export interface IBusqueda {
+    artista : string,
+    cancion : string
+}
+
 const Formulario = (): JSX.Element => {
-    const {setAlerta} = useLetras();
-  const [busqueda, setBusqueda] = useState({
+    const {setAlerta,busquedaLetra} = useLetras();
+  const [busqueda, setBusqueda] = useState<IBusqueda>({
     artista: "",
     cancion: "",
   });
@@ -14,6 +19,7 @@ const Formulario = (): JSX.Element => {
     if(Object.values(busqueda).includes('')){
         return setAlerta('Coloca el nombre del artista y la canción')
     }
+    busquedaLetra(busqueda);
     setAlerta('');
   }
   return (
